@@ -10,36 +10,43 @@ import {
     makeEvent
 } from './create';
 
-import { isFutureDate } from './check';
+import { 
+    isFutureDate,
+    eventAlreadyNamed
+} from './check';
 
 import { refreshCountdown } from './refresh';
 
 let allStoredEvents = JSON.parse(localStorage.getItem('allStoredEvents'));
-if (allStoredEvents !== null) {
-    for (const storedEvent of allStoredEvents) {
-        const listItem = createLi(storedEvent.Event);
-        
-        const timestamp = timeUntilEvent(storedEvent.Date);
-        isFutureDate(timestamp, listItem);
 
-        displayEvent(timestamp, listItem, storedEvent.Event)
+window.onload = () => {
+    if (allStoredEvents !== null) {
+        for (const storedEvent of allStoredEvents) {
+            const listItem = createLi(storedEvent.Event);
+            
+            const timestamp = timeUntilEvent(storedEvent.Date);
+            isFutureDate(timestamp, listItem);
 
-        createLiButton(listItem);
+            displayEvent(timestamp, listItem, storedEvent.Event)
+
+            createLiButton(listItem);
+        }
+
+    } else {
+        allStoredEvents = [];
     }
-
-} else {
-    allStoredEvents = [];
 }
 
 window.submitForm = function submitForm(form) {
     const date = form.eventdate.value;
+    const event = form.eventname.value;
 
     const timestamp = timeUntilEvent(date);
     if (timestamp <= 0) {
-        alert('Event has already occurred so cannot be added to countdown list');
+        alert('Event has already occurred so cannot be added to countdown list.');
+    } else if (eventAlreadyNamed(event)) {
+        alert('This event name has already been taken. Please choose a unique event name.');
     } else {
-        const event = form.eventname.value;
-
         allStoredEvents.push({Event:event, Date:date});
         localStorage.setItem('allStoredEvents', JSON.stringify(allStoredEvents));
 

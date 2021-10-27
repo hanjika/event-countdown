@@ -4,10 +4,6 @@ import { removeEvent } from "./remove";
 export function createLi(event) {
     const listItem = document.createElement('li');
     listItem.setAttribute('id', event);
-    listItem.setAttribute('draggable', true);
-
-    listItem.addEventListener('dragstart', dragLiStart);
-    listItem.addEventListener('dragend', dragLiEnd);
 
     document.querySelector('.list-of-events').appendChild(listItem);
     
@@ -30,14 +26,4 @@ export function makeEvent(timestamp, event) {
     displayEvent(timestamp, listItem, event);
 
     createLiButton(listItem);
-}
-
-function dragLiStart(e) {
-    setTimeout(() => {
-        e.target.classList.add('invisible');
-    }, 0); 
-}
-
-function dragLiEnd(e) {
-    e.target.classList.remove('invisible');
 }
