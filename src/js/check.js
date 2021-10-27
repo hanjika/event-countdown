@@ -9,9 +9,11 @@ export function isFutureDate(timestamp, listItem) {
 export function eventAlreadyNamed(event) {
     let allStoredEvents = JSON.parse(localStorage.getItem('allStoredEvents'));
 
-    for (const storedEvent of allStoredEvents) {
-        if (storedEvent.Event === event) {
-            return true;
+    if (allStoredEvents !== null) {
+        for (const storedEvent of allStoredEvents) {
+            if (storedEvent.Event === event) {
+                return true;
+            }
         }
     }
     return false;
