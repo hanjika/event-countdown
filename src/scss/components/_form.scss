@@ -1,0 +1,39 @@
+@use '../abstracts' as *;
+
+form {
+    margin-bottom: 5vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    input {
+        @include border-radius(10px);
+        font-size: $main-font-size;
+        border: 3.5px solid $primary-color;
+        color: $background-color;
+        font-family: $main-font-family;
+        height: 5vh;
+        &[type=text] {
+            width: 30vw;
+        }
+    
+        &[type=date] {
+            margin: 0 5vw;
+            &:invalid::-webkit-datetime-edit {
+                color: $primary-color;
+            }
+        }
+        
+        &[type=submit] {
+            @include click-elements-style;
+            height: 5vh;
+        }
+    
+        &:hover {
+            border: 3.5px solid $hover-color;
+        }
+    
+        &::placeholder {
+            color: $primary-color;
+        }
+    }
+}

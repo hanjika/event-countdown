@@ -1,0 +1,20 @@
+@use './colors' as *;
+@use './fonts' as *;
+
+@mixin click-elements-style {
+    background-color: $primary-color;
+    color: $font-color;
+    transition: 0.4s;
+    &:hover {
+        color: white;
+        text-shadow: 0 0 3px $font-color;
+        background-color: $hover-color;
+    }
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+            border-radius: $radius;
+}

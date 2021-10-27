@@ -1,0 +1,22 @@
+@use './abstracts' as *;
+@import './components';
+
+body {
+    background-color: $background-color;
+    color: $font-color;
+}
+
+h1 {
+    font-family: $header-font-family;
+    font-size: $header-font-size;
+    color: $primary-color;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: $main-font-family;
+    font-size: $main-font-size;
+}
